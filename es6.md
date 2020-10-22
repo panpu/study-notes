@@ -14,8 +14,9 @@
   console.log(Object.prototype.toString.call(new Date));//[object Date]
   console.log(Object.prototype.toString.call(/\d/));//[object RegExp]
   console.log(Object.prototype.toString.call(new Person));//[object Object]
-    1.手动递归
-     //定义一个空对象
+  `
+  ### 1.手动递归
+  `  //定义一个空对象
       let a = {
           name: 'zhangsan',
           age: 24,
