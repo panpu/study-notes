@@ -2,19 +2,18 @@
 1.es6中，对象声明函数属性可以使用简写，但简写不能作为构造函数，会报错
 2.深拷贝的2种数据
 数据类型判断
-`
-console.log(Object.prototype.toString.call("jerry"));//[object String]
-console.log(Object.prototype.toString.call(12));//[object Number]
-console.log(Object.prototype.toString.call(true));//[object Boolean]
-console.log(Object.prototype.toString.call(undefined));//[object Undefined]
-console.log(Object.prototype.toString.call(null));//[object Null]
-console.log(Object.prototype.toString.call({name: "jerry"}));//[object Object]
-console.log(Object.prototype.toString.call(function(){}));//[object Function]
-console.log(Object.prototype.toString.call([]));//[object Array]
-console.log(Object.prototype.toString.call(new Date));//[object Date]
-console.log(Object.prototype.toString.call(/\d/));//[object RegExp]
-console.log(Object.prototype.toString.call(new Person));//[object Object]
-  1.手动递归
+`console.log(Object.prototype.toString.call("jerry"));//[object String]`
+`console.log(Object.prototype.toString.call(12));//[object Number]`
+`console.log(Object.prototype.toString.call(true));//[object Boolean]`
+`console.log(Object.prototype.toString.call(undefined));//[object Undefined]`
+`console.log(Object.prototype.toString.call(null));//[object Null]`
+`console.log(Object.prototype.toString.call({name: "jerry"}));//[object Object]`
+`console.log(Object.prototype.toString.call(function(){}));//[object Function]`
+`console.log(Object.prototype.toString.call([]));//[object Array]`
+`console.log(Object.prototype.toString.call(new Date));//[object Date]`
+`console.log(Object.prototype.toString.call(/\d/));//[object RegExp]`
+`console.log(Object.prototype.toString.call(new Person));//[object Object]`
+  `1.手动递归
    //定义一个空对象
     let a = {
         name: 'zhangsan',
@@ -79,4 +78,3 @@ console.log(Object.prototype.toString.call(new Person));//[object Object]
     console.log(obj);
     console.log(arr);
     `
- 
