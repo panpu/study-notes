@@ -77,5 +77,160 @@ console.log(Object.prototype.toString.call(new Person));//[object Object]
     let obj = deepClone(a)
     let arr = deepClone(b)
     console.log(obj);
-    console.log(arr);
-    `
+    console.log(arr);`
+
+3.关于babel的转译
+
+给出一个日常编译的初始代码段，如下：
+
+`// let b` 
+
+`// new Promise((resolve, reject) => {`
+
+`//   setTimeout(() => {`
+
+`//     resolve(0)`
+
+`//   }, 1000)`
+
+`// }).then(res=>{`
+
+`//   b=res`
+
+`//   let fn = async () => {`
+
+`//     await setTimeout(()=>{`
+
+`//       b=1`
+
+`//     },1000)`
+
+`//   }`
+
+`//   fn()`
+
+`// })`
+
+使用最新版babel编译后
+
+`function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {`
+
+  `try {`
+
+​    `var info = gen[key](arg);`
+
+​    `var value = info.value;`
+
+  `} catch (error) {`
+
+​    `reject(error);`
+
+​    `return;`
+
+  `}`
+
+  `if (info.done) {`
+
+​    `resolve(value);`
+
+  `} else {`
+
+​    `Promise.resolve(value).then(_next, _throw);`
+
+  `}`
+
+`}`
+
+`function _asyncToGenerator(fn) {`
+
+  `return function () {`
+
+​    `var self = this, args = arguments;`
+
+​    `return new Promise(function (resolve, reject) {`
+
+​      `var gen = fn.apply(self, args);`
+
+​      `function _next(value) {`
+
+​        `asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);`
+
+​      `}`
+
+​      `function _throw(err) {`
+
+​        `asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);`
+
+​      `}`
+
+​      `_next(undefined);`
+
+​    `});`
+
+  `};`
+
+`}`
+
+`var b;`
+
+`new Promise(function (resolve, reject) {`
+
+  `setTimeout(function () {`
+
+​    `resolve(0);`
+
+  `}, 1000);`
+
+`}).then(function (res) {`
+
+  `b = res;`
+
+  `var fn = function () {`
+
+​    `var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee() {`
+
+​      `return regeneratorRuntime.wrap(function _callee$(_context) {`
+
+​        `while (1) {`
+
+​          `switch (_context.prev = _context.next) {`
+
+​            `case 0:`
+
+​              `_context.next = 2;`
+
+​              `return setTimeout(function () {`
+
+​                `b = 1;`
+
+​              `}, 1000);`
+
+​            `case 2:`
+
+​            `case "end":`
+
+​              `return _context.stop();`
+
+​          `}`
+
+​        `}`
+
+​      `}, _callee);`
+
+​    `})`
+
+​    `);`
+
+​    `return function fn() {`
+
+​      `return _ref.apply(this, arguments);`
+
+​    `};`
+
+  `}();`
+
+  `fn();`
+
+`});`
+
+事实证明new Promise不会被新版本的babel转译
