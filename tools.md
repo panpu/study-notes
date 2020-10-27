@@ -27,7 +27,7 @@ nvm use 12.11.0 切换node版本
 </script>
 ```
 
-这个脚本里的 editor = K.create('#你的textarea的id名', {}); 这个，对应的就是一个KindEditor编辑器
+这个脚本里的 `editor = K.create('#你的textarea的id名', {});` 这个，对应的就是一个KindEditor编辑器
 
 例子：
 
@@ -39,6 +39,7 @@ nvm use 12.11.0 切换node版本
 
 我们再引入刚刚提到的两个js文件后，再写如下js代码到该页面
 
+```
 <script type="text/javascript">
     //KindEditor脚本
     var editor;
@@ -47,5 +48,8 @@ nvm use 12.11.0 切换node版本
         });
     });
 </script>
+```
+
 
 那么这个textarea标签就会变成KindEditor编译器
+
