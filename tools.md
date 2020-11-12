@@ -53,3 +53,8 @@ nvm use 12.11.0 切换node版本
 
 那么这个textarea标签就会变成KindEditor编译器
 
+**3.nginx.conf禁止使用记事本打开**
+
+conf文件被记事本编辑过，保存成了含[BOM] 。在启动的时候logs中会报错的。
+
+使用vscode更改文件的编码模式，改回utf-8编码：ctrl+shift+p  change-file-encoding
